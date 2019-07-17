@@ -87,7 +87,6 @@ export const GET_SUBDOMAINS_FROM_SUBGRAPH = gql`
         id
         labelName
         labelhash
-        name
         owner {
           id
         }
