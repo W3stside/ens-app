@@ -91,10 +91,9 @@
       "last 2 edge versions"
     ],
     "production": [
-      ">1%",
-      "last 4 versions",
-      "Firefox ESR",
-      "not ie < 11"
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
   }
 }
