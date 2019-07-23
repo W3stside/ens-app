@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { Mutation, Query } from 'react-apollo'
 import PropTypes from 'prop-types'
-import { Transition } from 'react-spring'
+import { Transition } from 'react-spring/renderprops'
 
 import { GET_PUBLIC_RESOLVER } from '../../graphql/queries'
 import mq from 'mediaQuery'
