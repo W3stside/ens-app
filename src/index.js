@@ -14,6 +14,23 @@ import ConnectWalletConnect, {
   startWalletListeners
 } from './wallet-integration'
 
+// ============================================================== //
+// Line 9 of `setupENS`
+// await setupWeb3({ customProvider, reloadOnAccountsChange })
+// ============================================================== //
+
+/* ============================================================== //
+// replace in `setupWeb3` line 18 (custom provider logic)
+
+  if (customProvider) {
+    //for testing
+    provider = new ethers.providers.Web3Provider(customProvider)
+    signer = provider.getSigner()
+    return { provider, signer }
+  }
+  
+// ============================================================== */
+
 window.addEventListener('load', async () => {
   let client
   try {
