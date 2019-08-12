@@ -10,11 +10,31 @@ import { GlobalStateProvider } from 'globalState'
 import 'globalStyles'
 import { setupClient } from 'apolloClient'
 
+import ConnectWalletConnect, {
+  startWalletListeners
+} from './wallet-integration'
+
 window.addEventListener('load', async () => {
   let client
   try {
     client = await setupClient()
-    await setupENS({ reloadOnAccountsChange: true })
+    const {
+      walletConnectProvider: customProvider,
+      walletConnector,
+      WalletConnectQRCodeModal
+    } = await ConnectWalletConnect({
+      qrcode: true,
+      onUri: uri => console.debug('WalletConnect URI!', uri),
+      onSessionUpdate: e => console.debug('Session update!', e),
+      onDisconnect: () => {
+        console.warn('WalletConnect - Disconnected!')
+
+        window.location.reload()
+      }
+    })
+    console.debug('Custom Provider ==>', customProvider)
+    startWalletListeners({ walletConnector, WalletConnectQRCodeModal })
+    await setupENS({ customProvider, reloadOnAccountsChange: true })
   } catch (e) {
     console.log(e)
     await client.mutate({
