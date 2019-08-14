@@ -1,4 +1,4 @@
-import React, { createContext, Component } from 'react'
+import React, { createContext, Component, useContext } from 'react'
 
 const filters = {
   searchDomains: ['top', 'sub'],
@@ -11,6 +11,7 @@ const GlobalState = createContext({
 })
 
 export default GlobalState
+export const useGlobalState = () => useContext(GlobalState)
 
 export class GlobalStateProvider extends Component {
   constructor(props) {
@@ -18,13 +19,14 @@ export class GlobalStateProvider extends Component {
 
     this.state = {
       filters,
-      currentModal:null,
-      toggleModal:this.toggleModal,
+      currentModal: null,
+      toggleModal: this.toggleModal,
       actions: {
         toggleUnavailableNames: this.toggleUnavailableNames,
         togglePriceFilter: this.togglePriceFilter,
         updateSearchDomains: this.updateSearchDomains
-      }
+      },
+      extra: props.extra
     }
   }
 
@@ -35,11 +37,10 @@ export class GlobalStateProvider extends Component {
   }
 
   toggleModal = modal => {
-    this.setState(
-      state =>
-        state.currentModal && state.currentModal.name === modal.name
-          ? { currentModal: null }
-          : { currentModal: modal }
+    this.setState(state =>
+      state.currentModal && state.currentModal.name === modal.name
+        ? { currentModal: null }
+        : { currentModal: modal }
     )
   }
 

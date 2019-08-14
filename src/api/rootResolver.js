@@ -28,7 +28,13 @@ const rootDefaults = {
 
 const resolvers = {
   Web3: {
-    accounts: () => getAccounts(),
+    accounts: async ({ web3Instance }) => {
+      // can use that if we don't cache signer in @ensdomains/ui/src/web3.js
+      // return getAccounts()
+      const account = await web3Instance.getSigner().getAddress()
+      console.warn('Resolvers::accounts', account)
+      return [account]
+    },
     networkId: async () => {
       const networkId = await getNetworkId()
       return networkId
@@ -56,9 +62,12 @@ const resolvers = {
   },
   Query: {
     web3: async () => {
+      console.warn('Resolvers::web3')
+      const web3Instance = await getWeb3()
       try {
         return {
-          ...(await getWeb3()),
+          ...web3Instance,
+          web3Instance,
           isReadOnly: isReadOnly(),
           __typename: 'Web3'
         }

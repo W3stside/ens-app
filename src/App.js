@@ -49,7 +49,7 @@ const App = () => (
     <Query query={GET_ERRORS}>
       {({ data }) => {
         Analytics.setup()
-        if (data.error && data.error.message) {
+        if (data && data.error && data.error.message) {
           return <NetworkError message={data.error.message} />
         } else {
           return (

@@ -17,6 +17,8 @@ import Alice from '../components/HomePage/Alice'
 import ENSLogo from '../components/HomePage/images/ENSLogo.svg'
 import { ReactComponent as DefaultPermanentRegistrarIcon } from '../components/Icons/PermanentRegistrar.svg'
 
+import WalletConnector from '../components/WalletConnector'
+
 const ShortNameAuctions = styled('div')`
   display: flex;
   justify-content: center;
@@ -258,12 +260,15 @@ export default props => (
       <NetworkInfoQuery noLoader={true}>
         {({ accounts, network }) =>
           accounts.length > 0 && network ? (
-            <NetworkStatus>{network} network</NetworkStatus>
+            <NetworkStatus>
+              {network} network / account {accounts[0]}
+            </NetworkStatus>
           ) : (
             <NoAccounts textColour={'white'} />
           )
         }
       </NetworkInfoQuery>
+      <WalletConnector />
       <Favourites>
         <Link to="/favourites">Favourites</Link>
       </Favourites>
