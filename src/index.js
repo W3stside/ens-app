@@ -79,7 +79,7 @@ const ApolloConnector = ({ apolloClient }) => {
 
   const disconnectFromWC = useCallback(() => {
     console.log('providers.wc', providers.wc)
-    providers.wc && providers.wc.connector.killSession()
+    window.wc && window.wc.killSession()
     setProviders(providers => ({
       ...providers,
       wc: false
