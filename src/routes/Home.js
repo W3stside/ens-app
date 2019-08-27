@@ -258,7 +258,9 @@ export default props => (
       <NetworkInfoQuery noLoader={true}>
         {({ accounts, network }) =>
           accounts.length > 0 && network ? (
-            <NetworkStatus>{network} network</NetworkStatus>
+            <NetworkStatus>
+              {network} network / {accounts[0]} account
+            </NetworkStatus>
           ) : (
             <NoAccounts textColour={'white'} />
           )
