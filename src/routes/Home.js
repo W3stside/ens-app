@@ -254,6 +254,25 @@ const PermanentRegistrarTitle = styled('h2')`
   `}
 `
 
+const WCContainer = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 30px;
+  color: white;
+  font-weight: 200;
+  text-transform: capitalize;
+
+  button {
+    background: #5284ff;
+    color: white;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`
+
 export default props => (
   <Fragment>
     <Hero>
@@ -268,7 +287,9 @@ export default props => (
           )
         }
       </NetworkInfoQuery>
-      <WalletConnector />
+      <WCContainer>
+        <WalletConnector />
+      </WCContainer>
       <Favourites>
         <Link to="/favourites">Favourites</Link>
       </Favourites>
