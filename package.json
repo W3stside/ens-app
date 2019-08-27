@@ -46,6 +46,7 @@
     "react-spring": "^6.1.7",
     "react-tooltip": "^3.9.2",
     "react-transition-group-plus": "^0.5.3",
+    "web3connect": "^1.0.0-beta.19",
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
